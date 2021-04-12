@@ -28,9 +28,6 @@ public class Solution_1249_보급로 {
 			}
 			// 입력 끝
 
-			
-//			int min = bfs();
-//			System.out.println("min: "+min);
 			sb.append(String.format("#%d %d%n", t + 1, bfs()));
 		}
 		System.out.println(sb);
@@ -44,41 +41,17 @@ public class Solution_1249_보급로 {
 		while (!q.isEmpty()) {
 			int x = q.peek()[0];
 			int y = q.poll()[1];
-//			System.out.println(x + ", " + y);
 			for (int i = 0; i < 4; i++) {
 				int nx = x + dx[i];
 				int ny = y + dy[i];
-//				if (nx == N - 1 && ny == N - 1) {
-//					return visited[x][y];
-//				}
 				if (!isIn(nx, ny))
 					continue;
 
-//				if (map[nx][ny] == 0) {
-//					visited[nx][ny] = visited[x][y];
-//					q.offer(new Integer[] { nx, ny });
-//				} else if (map[nx][ny] == 1) {
-//					visited[nx][ny] = visited[x][y] + 1;
-//					q.offer(new Integer[] { nx, ny });
-//				}
-
-				if (visited[nx][ny] == 0 || visited[nx][ny] > visited[x][y] + map[nx][ny]) {
+				if (visited[nx][ny] == 0 || visited[nx][ny] > visited[x][y] + map[nx][ny]) {	// 방문한 적 없거나 
 					visited[nx][ny] = visited[x][y] + map[nx][ny];
 					q.offer(new Integer[] { nx, ny });
 				}
-
-//				if (map[nx][ny] == 0 && (visited[nx][ny] == 0 || visited[nx][ny] > visited[x][y])) {
-//					visited[nx][ny] = visited[x][y];
-//					q.offer(new Integer[] { nx, ny });
-//				} else if (map[nx][ny] == 1 && (visited[nx][ny] == 0 || visited[nx][ny] > visited[x][y] + 1)) {
-//					visited[nx][ny] = visited[x][y] + 1;
-//					q.offer(new Integer[] { nx, ny });
-//				}
 			}
-//			for (int[] row : visited) {
-//				System.out.println(Arrays.toString(row));
-//			}
-//			System.out.println("==================================");
 		}
 		return visited[N - 1][N - 1] - 1;
 	}
